@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarePoint | Hospital Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="CarePoint home">
+        <span class="brand-mark">✚</span><span>care<span class="brand-light">point</span></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-menu">
+        <a class="nav-link active" href="#overview" data-page="overview"><span>▦</span> Overview</a>
+        <a class="nav-link" href="#appointments" data-page="appointments"><span>▣</span> Appointments <b class="nav-count" id="navAppointmentCount">4</b></a>
+        <a class="nav-link" href="#patients" data-page="patients"><span>♙</span> Patients</a>
+        <a class="nav-link" href="#doctors" data-page="doctors"><span>⚕</span> Doctors</a>
+      </nav>
+      <div class="side-label second-label">GENERAL</div>
+      <nav class="nav-menu">
+        <a class="nav-link" href="#services" data-page="services"><span>✚</span> Departments</a>
+        <a class="nav-link" href="#reports" data-page="reports"><span>▤</span> Reports</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">?</div>
+          <strong>Need assistance?</strong>
+          <p>Our support team is here to help you.</p>
+          <a href="mailto:support@carepoint.demo">Contact support ↗</a>
+        </div>
+        <div class="profile-mini">
+          <div class="avatar admin-avatar">AD</div>
+          <div><strong>Admin Desk</strong><small>Administrator</small></div>
+          <span class="dots">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbPage">Overview</strong></div>
+        <div class="top-actions">
+          <div class="today-chip"><span class="live-dot"></span> System online</div>
+          <button class="icon-button" id="notificationBtn" aria-label="Notifications">♧<i></i></button>
+          <div class="avatar admin-avatar">AD</div>
+        </div>
+      </header>
+
+      <section class="page-section active-page" id="overview">
+        <div class="welcome-row">
+          <div><p class="eyebrow">SUNDAY, NOVEMBER 1, 2026</p><h1>Good evening, Admin <span>✦</span></h1><p class="subheading">Here’s what’s happening at your hospital today.</p></div>
+          <button class="primary-btn" id="quickAddBtn">＋ New appointment</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total patients</span><span class="stat-icon blue">♙</span></div><div class="stat-number" id="patientTotal">1,284</div><div class="stat-foot"><span class="trend">↗ 12.8%</span> <span>vs. last month</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>Appointments</span><span class="stat-icon purple">▣</span></div><div class="stat-number" id="appointmentTotal">4</div><div class="stat-foot"><span class="trend">↗ 8.2%</span> <span>vs. last week</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>Available doctors</span><span class="stat-icon green">⚕</span></div><div class="stat-number">18<span class="number-suffix">/24</span></div><div class="stat-foot"><span class="positive">● 18 on duty</span> <span>right now</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>Departments</span><span class="stat-icon orange">✚</span></div><div class="stat-number">08</div><div class="stat-foot"><span>Across the hospital</span></div></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel appointments-panel">
+            <div class="panel-heading"><div><h2>Upcoming appointments</h2><p>Keep track of scheduled patient visits.</p></div><button class="text-btn" data-goto="appointments">View all ↗</button></div>
+            <div class="table-wrap"><table><thead><tr><th>PATIENT</th><th>DOCTOR</th><th>DATE & TIME</th><th>STATUS</th></tr></thead><tbody id="overviewAppointments"></tbody></table></div>
+          </article>
+          <article class="panel department-panel">
+            <div class="panel-heading"><div><h2>Departments</h2><p>Explore hospital specialities.</p></div><button class="more-btn" data-goto="services">•••</button></div>
+            <div class="department-list">
+              <div class="department-item"><span class="dept-icon cardiology">♡</span><div><strong>Cardiology</strong><small>Heart & blood vessels</small></div><b>04</b></div>
+              <div class="department-item"><span class="dept-icon neurology">◉</span><div><strong>Neurology</strong><small>Brain & nervous system</small></div><b>03</b></div>
+              <div class="department-item"><span class="dept-icon dental">✧</span><div><strong>Dental care</strong><small>Oral health</small></div><b>05</b></div>
+              <div class="department-item"><span class="dept-icon orthopedics">⌁</span><div><strong>Orthopedics</strong><small>Bones & joints</small></div><b>06</b></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="bottom-grid">
+          <article class="panel doctors-panel"><div class="panel-heading"><div><h2>Our specialists</h2><p>Meet the people behind your care.</p></div><button class="text-btn" data-goto="doctors">All doctors ↗</button></div><div class="doctor-mini-grid" id="doctorMiniGrid"></div></article>
+          <article class="panel notice-panel"><div class="notice-symbol">✚</div><div><span class="eyebrow">OUR COMMITMENT</span><h2>Health for all, at every stage.</h2><p>CarePoint supports SDG 3: ensuring healthy lives and promoting well-being for everyone.</p><a href="#services" data-goto="services">Explore our services →</a></div></article>
+        </div>
+      </section>
+
+      <section class="page-section" id="appointments">
+        <div class="page-title-row"><div><p class="eyebrow">SCHEDULE MANAGEMENT</p><h1>Appointments</h1><p class="subheading">Manage patient visits and appointment schedules.</p></div><button class="primary-btn" id="addAppointmentBtn">＋ Add appointment</button></div>
+        <div class="panel full-panel">
+          <div class="toolbar"><div class="search-box"><span>⌕</span><input id="appointmentSearch" placeholder="Search patient or doctor..." aria-label="Search appointments"></div><select id="statusFilter" aria-label="Filter by status"><option value="all">All statuses</option><option value="Confirmed">Confirmed</option><option value="Pending">Pending</option><option value="Completed">Completed</option></select></div>
+          <div class="table-wrap"><table><thead><tr><th>PATIENT</th><th>DOCTOR</th><th>DEPARTMENT</th><th>DATE & TIME</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="allAppointments"></tbody></table></div>
+        </div>
+      </section>
+
+      <section class="page-section" id="patients">
+        <div class="page-title-row"><div><p class="eyebrow">PATIENT DIRECTORY</p><h1>Patients</h1><p class="subheading">A simple directory of registered patients.</p></div><button class="primary-btn" id="addPatientBtn">＋ Add patient</button></div>
+        <div class="panel full-panel"><div class="toolbar"><div class="search-box"><span>⌕</span><input id="patientSearch" placeholder="Search by name or patient ID..." aria-label="Search patients"></div><span class="result-count" id="patientCountLabel"></span></div><div class="table-wrap"><table><thead><tr><th>PATIENT</th><th>PATIENT ID</th><th>AGE</th><th>PHONE</th><th>LAST VISIT</th><th>STATUS</th></tr></thead><tbody id="patientTable"></tbody></table></div></div>
+      </section>
+
+      <section class="page-section" id="doctors">
+        <div class="page-title-row"><div><p class="eyebrow">MEDICAL TEAM</p><h1>Doctors</h1><p class="subheading">Find the right specialist for every patient.</p></div></div>
+        <div class="doctor-directory" id="doctorDirectory"></div>
+      </section>
+
+      <section class="page-section" id="services">
+        <div class="page-title-row"><div><p class="eyebrow">CARE & TREATMENT</p><h1>Departments</h1><p class="subheading">Multidisciplinary care to support healthier communities.</p></div></div>
+        <div class="service-grid">
+          <article class="service-card"><span class="dept-icon cardiology">♡</span><h3>Cardiology</h3><p>Diagnosis and treatment of heart and cardiovascular conditions.</p><small>4 specialists · Heart care</small></article>
+          <article class="service-card"><span class="dept-icon neurology">◉</span><h3>Neurology</h3><p>Care for conditions affecting the brain, spine and nervous system.</p><small>3 specialists · Brain health</small></article>
+          <article class="service-card"><span class="dept-icon dental">✧</span><h3>Dental care</h3><p>Preventive and restorative services for healthy teeth and gums.</p><small>5 specialists · Oral health</small></article>
+          <article class="service-card"><span class="dept-icon orthopedics">⌁</span><h3>Orthopedics</h3><p>Assessment and treatment of bone, muscle and joint conditions.</p><small>6 specialists · Mobility</small></article>
+          <article class="service-card"><span class="dept-icon pediatrics">♡</span><h3>Pediatrics</h3><p>Health services focused on infants, children and adolescents.</p><small>3 specialists · Child health</small></article>
+          <article class="service-card"><span class="dept-icon general">✚</span><h3>General medicine</h3><p>Primary care, routine check-ups and ongoing health support.</p><small>3 specialists · General care</small></article>
+          <article class="service-card"><span class="dept-icon emergency">＋</span><h3>Emergency care</h3><p>Immediate assessment and support for urgent medical needs.</p><small>24/7 service · Emergency</small></article>
+          <article class="service-card"><span class="dept-icon radiology">▧</span><h3>Radiology</h3><p>Medical imaging services to help diagnose health conditions.</p><small>2 specialists · Diagnostics</small></article>
+        </div>
+      </section>
+
+      <section class="page-section" id="reports">
+        <div class="page-title-row"><div><p class="eyebrow">HOSPITAL INSIGHTS</p><h1>Reports</h1><p class="subheading">A quick snapshot of this demo hospital's activity.</p></div><button class="primary-btn" id="exportBtn">↓ Export appointments</button></div>
+        <div class="stats-grid report-stats"><article class="stat-card"><div class="stat-top"><span>Total patients</span><span class="stat-icon blue">♙</span></div><div class="stat-number" id="reportPatients">1,284</div><div class="stat-foot">Registered patient records</div></article><article class="stat-card"><div class="stat-top"><span>Total appointments</span><span class="stat-icon purple">▣</span></div><div class="stat-number" id="reportAppointments">4</div><div class="stat-foot">Appointments in this demo</div></article><article class="stat-card"><div class="stat-top"><span>Confirmed</span><span class="stat-icon green">✓</span></div><div class="stat-number" id="reportConfirmed">2</div><div class="stat-foot">Confirmed appointments</div></article><article class="stat-card"><div class="stat-top"><span>Pending</span><span class="stat-icon orange">◷</span></div><div class="stat-number" id="reportPending">1</div><div class="stat-foot">Awaiting confirmation</div></article></div>
+        <div class="panel report-note"><h2>About this report</h2><p>These figures are generated from sample data and appointments created in this browser. This project is a front-end academic demonstration and is not connected to a real hospital database.</p></div>
+      </section>
+
+      <footer class="footer">© 2026 CarePoint Hospital Management System <span>Designed with care · SDG 3</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="appointmentModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-heading"><div><p class="eyebrow">SCHEDULE A VISIT</p><h2 id="modalTitle">New appointment</h2></div><button class="close-btn" data-close="appointmentModal" aria-label="Close">×</button></div>
+      <form id="appointmentForm">
+        <label>Patient name<input name="patient" required placeholder="Enter patient name"></label>
+        <div class="form-two"><label>Doctor<select name="doctor" required><option value="">Select doctor</option><option>Dr. Ananya Menon</option><option>Dr. Rahul Nair</option><option>Dr. Meera Thomas</option><option>Dr. Arjun Das</option><option>Dr. Nisha Varghese</option></select></label><label>Department<select name="department" required><option value="">Select department</option><option>Cardiology</option><option>Neurology</option><option>Dental care</option><option>Orthopedics</option><option>Pediatrics</option><option>General medicine</option></select></label></div>
+        <div class="form-two"><label>Date<input type="date" name="date" required></label><label>Time<input type="time" name="time" required></label></div>
+        <label>Notes <span class="optional">(optional)</span><textarea name="notes" rows="2" placeholder="Reason for visit..."></textarea></label>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="appointmentModal">Cancel</button><button type="submit" class="primary-btn">Save appointment</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="patientModal" aria-hidden="true">
+    <div class="modal small-modal" role="dialog" aria-modal="true" aria-labelledby="patientModalTitle">
+      <div class="modal-heading"><div><p class="eyebrow">PATIENT DIRECTORY</p><h2 id="patientModalTitle">Add patient</h2></div><button class="close-btn" data-close="patientModal" aria-label="Close">×</button></div>
+      <form id="patientForm">
+        <label>Full name<input name="name" required placeholder="Enter patient name"></label>
+        <div class="form-two"><label>Age<input name="age" type="number" min="0" max="120" required placeholder="Age"></label><label>Phone<input name="phone" required placeholder="Phone number"></label></div>
+        <label>Last visit<input name="visit" type="date" required></label>
+        <div class="modal-actions"><button type="button" class="secondary-btn" data-close="patientModal">Cancel</button><button type="submit" class="primary-btn">Add patient</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
